@@ -1,0 +1,85 @@
+total models = 7
+
+HH
+	SPIKE = yes	
+	PARAM = 9:
+		Cm[nF] = 1.0
+		gL[uS] = 0.05
+		EL[mV] = -70.0
+		gNa_bar[uS] = 100.0
+		ENa[mV] = 50.0
+		gK_bar[uS] = 30.0
+		EK[mV] = -90.0
+		Temp[Celsius]	= 36.0
+		VTraub[mV] = -63.0
+	STATE = 3:
+		m[1] = 0.0
+		h[1] = 1.0
+		n[1] = 0.0	
+
+HH_O1
+	SPIKE = yes	
+	PARAM = 9:
+		Cm[nF] = 1.0
+		gL[uS] = 0.05
+		EL[mV] = -70.0
+		gNa_bar[uS] = 100.0
+		ENa[mV] = 50.0
+		gK_bar[uS] = 30.0
+		EK[mV] = -90.0
+		Temp[Celsius]	= 36.0
+		VTraub[mV] = -63.0
+	STATE = 3:
+		m[1] = 0.0
+		h[1] = 1.0
+		n[1] = 0.0	
+
+Izhikevich
+	SPIKE = yes	
+	PARAM = 4:
+		a[1/ms] = 0.02
+		b[1] = 0.2
+		c[mV]	= -50.0
+		d[mV] = 2.0
+	STATE = 1:
+		u[mV] = 0.0
+
+Izhikevich_O1
+	SPIKE = yes	
+	PARAM = 4:
+		a[1/ms] = 0.02
+		b[1] = 0.2
+		c[mV]	= -50.0
+		d[mV] = 2.0
+	STATE = 1:
+		u[mV] = 0.0
+
+LIF
+	SPIKE = yes	
+	PARAM = 6:
+		Cm[nF] = 1.0
+		Rm[Mohm] = 20.0
+		Vrest[mV] = -70.0
+		Vthresh[mV]	= -50.0
+		Vreset[mV] = -70.0
+		RefracP[ms] = 5.0
+	STATE = 0:
+
+LIF_O1
+	SPIKE = yes	
+	PARAM = 6:
+		Cm[nF] = 1.0
+		Rm[Mohm] = 20.0
+		Vrest[mV] = -70.0
+		Vthresh[mV]	= -50.0
+		Vreset[mV] = -70.0
+		RefracP[ms] = 5.0
+	STATE = 0:
+
+Pas
+	SPIKE = no
+	PARAM = 3:
+		Cm[nF] = 1.0
+		g_pas[uS] = 0.0001
+		E_pas[mV] = -70.0
+	STATE = 0:

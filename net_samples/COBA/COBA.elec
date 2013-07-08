@@ -1,0 +1,36 @@
+
+# ElectrodeBuilder vs.xpto
+# This is a template for an input electuli protocol file.
+# The data structure is:
+#
+# START
+#
+# <elect0 start time [ms]>	[<first neuron id>, <last neuron id>] <electrode id> <paramenters par0 par1 par2 ...>
+# <elect1 start time [ms]>	[<first neuron id>, <last neuron id>] <electrode id> <paramenters par0 par1 par2 ...>
+# ...
+# 
+# Possible electrodes and respective parameters, are:
+# (stimulation electrodes have the 'inj' prefix while recording electrodes have the 'rec' prefix)
+# fire neurons in range                       : injFire 
+# fire neurons periodically                   : injFirePeriodically <period [ms]> <duration [ms]> 
+# fires a selected number of random neurons   : injFireRandom <sample size [1]> 
+# fire neurons independently, Poisson process : injFirePoissonAsync <mean value [ms]> <duration [ms]> 
+# fire neurons synchronously, Poisson process : injFirePoissonSync <mean value [ms]> <duration [ms]> 
+# inject constant current                     : injCurrentConstant <current [nA]> <duration [ms]> 
+# inject random current (Gaussian)            : injCurrentGaussianNoise <current mean [nA]> <current stdev [nA]> <duration [ms]> 
+# inject sinusoidal current                   : injCurrentSine <current amplitude [nA]> <frequency [Hz]> <duration [ms]> 
+# record membrane potential from fdm00        : recV0 <record periodicity [1] (integer>0)> <duration [ms]> 
+# record membrane potential from all fdomais  : recVAll <record periodicity [1] (integer>0)> <duration [ms]> 
+# record state variables from fdm00           : recStates0 <record periodicity [1] (integer>0)> <duration [ms]> 
+# record state variables from all fdomains    : recStatesAll <record periodicity [1] (integer>0)> <duration [ms]> 
+# record state variables from all synapses    : recSynStates <record periodicity [1] (integer>0)> <duration [ms]> 
+# 
+# Example:
+#
+# START
+# 100.0	[100,200]	injCurrentGaussianNoise	1.5  0.2  500.0
+# 150.0	[0,100]	injFire
+# 250.0	[1,1]	injFirePeriodically		10.0  50
+ 
+START
+0.0	[0,3999]	injFirePoissonAsync 	200.0	50.0

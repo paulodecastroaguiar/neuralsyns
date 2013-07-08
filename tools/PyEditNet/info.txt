@@ -1,0 +1,21 @@
+1 Read_Network( 'network_file.net' ) 
+Reads all data from the network model data file called 'network_file.net'.
+
+2 Write_Network( 'network_file.net' )
+Writes all data into the network model data file 'network_file.net'.
+
+3 Edit_Axon_Delay( pop_source, pop_target, velocity )
+Calculate new synaptic axon delays. The velocity parameter is assumed to be in um/ms and is used to convert distances to time delays. The parameter pop_source is the source population ID, pop_target is the target population ID and velocity is the action potential propagation velocity in this connection. It calculates new synaptic delays for each synapse.	
+      
+4 Produce_Synaptic_Gaussian_Profile( pop_source, pop_target, wfactor, sigma )
+Produce a synaptic gaussian profile, by changing the weights of the connection from each neuron of the source population pop_source, using a weight factor and a standard deviation for the gaussian profile. The parameter pop_target is the popupulation target ID, wfactor is the weight factor and sigma is the standard deviation of Gaussian distribution.	
+
+5 Define_Interception_Volume_Topology( nrn, pop_target, 'shape', args[] )
+Defines an interception volume topology for a given neuron ID and a target population. The parameter nrn is the neuron source ID, pop_target is the population target ID and 'shape' is the name of the volume used as topology ('cubic', 'ellipsoid', 'cone' or 'cylinder'). For each shape the argument args[] represents:
+	cubic		-> args=[a, b, c] [length, weight, high]
+	ellipsoid 	-> args=[a, b, c] [radius in axis x, radius in axis y, radius in axis z]
+	cone		-> args=[r, h]	  [base radius, high]
+	cylinder	-> args=[r, h]    [base radius, high]
+     
+6 Plot_RF( nrn, pop_target )
+Plots the connection volume topology of one neuron to one target population. Parameter nrn is the source neuron ID and pop_target is the target population ID.

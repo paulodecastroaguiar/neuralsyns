@@ -1,0 +1,30 @@
+total models = 4
+
+Hebb
+	PARAM = 3:
+		w_max[1] = 1.0
+		delta_w[1] = 0.1
+		timewindow[ms] = 50.0
+	STATE = 0:
+
+STDP
+	PARAM = 5:
+		tau_pre[ms] = 20.0
+		tau_post[ms] = 20.0
+		D_pre[1] = 0.1
+		D_post[1] = 0.1
+		w_max[1] = 1.0
+	STATE = 0:
+
+STP
+	PARAM = 3:
+		U1[1] = 1.0
+		tau_fac[ms] = 0.1
+		tau_rec[ms] = 0.1
+	STATE = 2:
+		Use[1] = 0.0
+		P[1] = 1.0
+
+Static
+	PARAM = 0:
+	STATE = 0:

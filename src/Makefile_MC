@@ -1,0 +1,76 @@
+# makefile for NeuralSyns
+# Paulo de Castro Aguiar - 2010
+# paulodecastroaguiar@gmail.com
+
+# Profiling: -pg
+# Debugging: -ggdb
+# Optimising: -O3
+# Fast Math: -ffast-math
+# OpenMP: -fopenmp
+
+CC = gcc
+CFLAGS = -Wall -O3 -fopenmp -Wno-unused-but-set-variable
+LMATH = -lm
+LGSL = -lgsl -lgslcblas
+LGLUT = -lglut -lGL -lGLU 
+BINDIR = ~/NeuralSyns/bin/
+
+
+all : NeuralSyns
+
+NeuralSyns : libgenerator main.o general.o models.o dataio.o graphics.o quaternions.o vec3math.o electrodes.o populations.o neurons.o synapses.o myfunctions.o
+	$(CC) $(CFLAGS)  *.o -o NeuralSyns_MC $(LMATH) $(LGSL) $(LGLUT)
+
+
+main.o : main.c dataio.h general.h graphics.h populations.h neurons.h models.h synapses.h electrodes.h
+	$(CC) $(CFLAGS) -c main.c
+
+general.o : general.c general.h
+	$(CC) $(CFLAGS) -c general.c
+
+models.o : models.c models.h
+	$(CC) $(CFLAGS) -c models.c
+	$(CC) $(CFLAGS) -c ../dynamics/Neuron_Models/*.c ../dynamics/Synapse_Models/*.c ../dynamics/Plasticity_Models/*.c
+
+dataio.o : dataio.c dataio.h 
+	$(CC) $(CFLAGS) -c dataio.c
+
+graphics.o : graphics.c graphics.h
+	$(CC) $(CFLAGS) -c graphics.c
+
+quaternions.o : quaternions.c quaternions.h
+	$(CC) $(CFLAGS) -c quaternions.c
+
+vec3math.o : vec3math.c vec3math.h
+	$(CC) $(CFLAGS) -c vec3math.c
+
+electrodes.o : electrodes.c electrodes.h
+	$(CC) $(CFLAGS) -c electrodes.c
+
+populations.o : populations.c populations.h
+	$(CC) $(CFLAGS) -c populations.c
+
+neurons.o : neurons.c neurons.h
+	$(CC) $(CFLAGS) -c neurons.c
+
+synapses.o : synapses.c synapses.h
+	$(CC) $(CFLAGS) -c synapses.c
+
+myfunctions.o : myfunctions.c myfunctions.h
+	$(CC) $(CFLAGS) -c myfunctions.c
+
+
+# produce the models.c file from the models library and execute the code to produce models.h and models.c
+libgenerator : libgenerator.c ../dynamics/Neuron_Models/*.c ../dynamics/Synapse_Models/*.c ../dynamics/Plasticity_Models/*.c
+	$(CC) $(CFLAGS) libgenerator.c -o libgenerator -Wno-unused-but-set-variable
+	./libgenerator
+
+
+# clean out
+clean:
+	rm -f *~ *.o libgenerator
+
+
+# install things in the right place
+install: NeuralSyns
+	mv NeuralSyns_MC $(BINDIR)

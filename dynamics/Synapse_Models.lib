@@ -1,0 +1,71 @@
+total models = 7
+
+AMPA_NMDA
+	PARAM = 8:
+		g_max_AMPA[uS] = 0.001
+		g_max_NMDA[uS] = 0.001
+		E_syn[mV] = 0.0
+		AMPA_rise[ms] = 1.0
+		AMPA_decay[ms] = 5.0
+		NMDA_rise[ms] = 1.0
+		NMDA_decay[ms] = 5.0
+		Mgo[mM] = 1.0
+	STATE = 6:
+		norm_AMPA[1] = 1.0
+		g_AMPA_A[1] = 0.0
+		g_AMPA_B[1] = 0.0
+		norm_NMDA[1] = 1.0
+		g_NMDA_A[1] = 0.0
+		g_NMDA_B[1] = 0.0
+
+AlphaSyn	
+	PARAM = 3:
+		g_max[uS] = 0.001
+		E_syn[mV] = 0.0
+		tau[ms]	= 1.0
+	STATE = 2:
+		g_syn[1] = 0.0
+		g_aux[1] = 0.0
+
+Exp2Syn	
+	PARAM = 4:
+		g_max[uS] = 0.001
+		E_syn[mV] = 0.0
+		tau_rise[ms]	= 1.0
+		tau_decay[ms]	= 5.0
+	STATE = 3:
+		norm[1] = 1.0
+		g_syn_A[1] = 0.0
+		g_syn_B[1] = 0.0
+
+ExpSyn	
+	PARAM = 3:
+		g_step[uS] = 0.001
+		E_syn[mV] = 0.0
+		tau_syn[ms] = 5.0
+	STATE = 1:
+		g_syn[S] = 0.0
+
+IExpSyn	
+	PARAM = 2:
+		I_max[nA] = 0.1
+		tau_decay[ms] = 5.0
+	STATE = 0:
+
+ISyn	
+	PARAM = 2:
+		I_max[nA] = 0.1
+		dur[ms] = 5.0
+	STATE = 0:
+
+NMDA
+	PARAM = 5:
+		g_max[uS] = 0.001
+		E_syn[mV] = 0.0
+		tau_rise[ms] = 1.0
+		tau_decay[ms] = 5.0
+		Mgo[mM] = 1.0
+	STATE = 3:
+		norm[1] = 1.0
+		g_syn_A[1] = 0.0
+		g_syn_B[1] = 0.0
